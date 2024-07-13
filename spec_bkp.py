@@ -62,8 +62,13 @@ def backup_files(paths, backup_dir):
 if __name__ == "__main__":
     # Define the paths to backup
     PATHS_TO_BACKUP = [
-        r"path\to\your\file_or_directory1",
-        r"path\to\your\file_or_directory2",
+        r"C:\Users\clldu\.gnupg",
+        r"C:\Users\clldu\.sops",
+        r"C:\Users\clldu\.bash_profile",
+        r"C:\Users\clldu\.bashrc",
+        r"C:\Users\clldu\.gitconfig",
+        r"C:\Users\clldu\.gitconfig-personal-D",
+        r"C:\Users\clldu\.gitconfig-work-D",
     ]
 
     # Destination directory for the backup
