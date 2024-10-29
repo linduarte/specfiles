@@ -1,4 +1,1 @@
-.vscode/settings.json
-/spcbkp
-requirements.txt
-.mypy_cache
+.spec/

@@ -64,11 +64,10 @@ if __name__ == "__main__":
     PATHS_TO_BACKUP = [
         r"C:\Users\clldu\.gnupg",
         r"C:\Users\clldu\.sops",
-        r"C:\Users\clldu\.bash_profile",
         r"C:\Users\clldu\.bashrc",
         r"C:\Users\clldu\.gitconfig",
-        r"C:\Users\clldu\.gitconfig-personal-D",
-        r"C:\Users\clldu\.gitconfig-work-D",
+        r"C:\Users\clldu\.gitconfig-pers",
+        r"C:\Users\clldu\.gitconfig-work",
     ]
 
     # Destination directory for the backup
