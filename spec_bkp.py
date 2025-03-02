@@ -62,16 +62,17 @@ def backup_files(paths, backup_dir):
 if __name__ == "__main__":
     # Define the paths to backup
     PATHS_TO_BACKUP = [
-        r"C:\Users\clldu\.gnupg",
-        r"C:\Users\clldu\.sops",
-        r"C:\Users\clldu\.bashrc",
-        r"C:\Users\clldu\.gitconfig",
-        r"C:\Users\clldu\.gitconfig-pers",
-        r"C:\Users\clldu\.gitconfig-work",
+        r"C:\Program Files (x86)\gnupg",
+        r"C:\Users\admin\.sops",
+        r"C:\Users\admin\.bashrc",
+        r"C:\Users\admin\.gitconfig",
+        r"C:\Users\admin\.gitconfig-pers",
+        r"C:\Users\admin\.gitconfig-work",
+        r"C:\Users\admin\.config"
     ]
 
     # Destination directory for the backup
-    BACKUP_DIRECTORY = r"C:\Users\clldu\OneDrive\Documentos\spec_files_bkp"
+    BACKUP_DIRECTORY = r"C:\Users\Admin\OneDrive\Documentos\spec_files_bkp"
 
     # Call the backup_files function to perform the backup
     backup_files(PATHS_TO_BACKUP, BACKUP_DIRECTORY)
