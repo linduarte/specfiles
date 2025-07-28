@@ -1,66 +1,59 @@
 """
-This script performs backups of specified files and directories
-to a designated backup directory.
+Este script realiza backups de arquivos e diretórios especificados
+para um diretório de backup definido.
 
-Usage:
-1. Define the paths to backup in the PATHS_TO_BACKUP list.
-2. Specify the destination directory for the backup in BACKUP_DIRECTORY.
-3. Run the script.
+Uso:
+1. Defina os caminhos a serem salvos em PATHS_TO_BACKUP.
+2. Especifique o diretório de destino em BACKUP_DIRECTORY.
+3. Execute o script.
 
-The script will create the backup directory if it does not exist
-and copy the specified files and directories into it.
+O script cria o diretório de backup se ele não existir e copia os arquivos/diretórios,
+atualizando arquivos já existentes no backup.
 """
 
 import shutil
 from pathlib import Path
 
-
 def backup_files(paths, backup_dir):
     """
-    Backup the specified files/directories to the backup directory.
+    Faz backup dos arquivos/diretórios especificados para o diretório de backup.
 
     Args:
-    - paths (list): List of paths to backup.
-    - backup_dir (str): Destination directory for the backup.
+        paths (list): Lista de caminhos a serem salvos.
+        backup_dir (str): Diretório de destino do backup.
     """
     backup_dir = Path(backup_dir)
-
-    # Create backup directory if it doesn't exist
     backup_dir.mkdir(parents=True, exist_ok=True)
 
-    # Iterate over each path and copy the files/directories
-    # to the backup directory
     for path in paths:
         path = Path(path)
-        print(f"Backing up: {path}")  # Debugging statement
-        if path.exists():
-            # Get the base name of the file or directory
-            base_name = path.name
-            # Destination path for the backup
-            destination_path = backup_dir / base_name
-            if path.is_dir():
-                # If the path is a directory, check if it already
-                # exists in the backup directory
-                if not destination_path.exists():
-                    # If it doesn't exist, copy the entire directory
-                    shutil.copytree(path, destination_path)
-                    print(f"Backup created for {path} at {destination_path}")
-                else:
-                    print(
-                        "Skipping backup for "
-                        + str(path)
-                        + " as it already exists in the backup directory."
-                    )
-            else:
-                # If the path is a file, copy the file
-                shutil.copy2(path, destination_path)
-                print(f"Backup created for {path} at {destination_path}")
-        else:
-            print(f"Path {path} does not exist, skipping backup.")
+        print(f"Fazendo backup de: {path}")
+        if not path.exists():
+            print(f"Caminho {path} não existe, pulando.")
+            continue
 
+        base_name = path.name
+        destination_path = backup_dir / base_name
+
+        if path.is_file():
+            destination_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(path, destination_path)
+            print(f"Arquivo salvo/atualizado: {destination_path}")
+        elif path.is_dir():
+            for item in path.rglob('*'):
+                rel_path = item.relative_to(path)
+                dest_item = destination_path / rel_path
+                if item.is_dir():
+                    dest_item.mkdir(parents=True, exist_ok=True)
+                else:
+                    dest_item.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(item, dest_item)
+                    print(f"Arquivo salvo/atualizado: {dest_item}")
+        else:
+            print(f"{path} não é arquivo nem diretório, pulando.")
 
 if __name__ == "__main__":
-    # Define the paths to backup
+    # Caminhos a serem salvos
     PATHS_TO_BACKUP = [
         r"C:\Program Files (x86)\gnupg",
         r"C:\Users\admin\.sops",
@@ -71,8 +64,9 @@ if __name__ == "__main__":
         r"C:\Users\admin\.config"
     ]
 
-    # Destination directory for the backup
+    # ...existing code...
+    # Diretório de destino do backup
     BACKUP_DIRECTORY = r"C:\Users\Admin\OneDrive\Documentos\spec_files_bkp"
-
-    # Call the backup_files function to perform the backup
+    
+    # Chamada da função para executar o backup
     backup_files(PATHS_TO_BACKUP, BACKUP_DIRECTORY)
