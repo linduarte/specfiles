@@ -59,10 +59,12 @@ if __name__ == "__main__":
         r"C:\Users\admin\.sops",
         r"C:\Users\admin\.bashrc",
         r"C:\Users\admin\.gitconfig",
-        r"C:\Users\admin\.gitconfig-pers",
+        r"C:\Users\admin\.gitconfig-personal",
         r"C:\Users\admin\.gitconfig-work",
         r"C:\Users\admin\.config",
         r"C:\Users\admin\.ssh",
+        r"C:\Users\admin\.ssh\config",
+        r"C:\Users\admin\.ssh\allowed_signers",
     ]
 
     # ...existing code...
