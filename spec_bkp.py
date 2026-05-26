@@ -14,6 +14,7 @@ atualizando arquivos já existentes no backup.
 import shutil
 from pathlib import Path
 
+
 def backup_files(paths, backup_dir):
     """
     Faz backup dos arquivos/diretórios especificados para o diretório de backup.
@@ -40,7 +41,7 @@ def backup_files(paths, backup_dir):
             shutil.copy2(path, destination_path)
             print(f"Arquivo salvo/atualizado: {destination_path}")
         elif path.is_dir():
-            for item in path.rglob('*'):
+            for item in path.rglob("*"):
                 rel_path = item.relative_to(path)
                 dest_item = destination_path / rel_path
                 if item.is_dir():
@@ -52,11 +53,11 @@ def backup_files(paths, backup_dir):
         else:
             print(f"{path} não é arquivo nem diretório, pulando.")
 
+
 if __name__ == "__main__":
     # Caminhos a serem salvos
     PATHS_TO_BACKUP = [
         r"C:\Program Files (x86)\gnupg",
-        r"C:\Users\admin\.sops",
         r"C:\Users\admin\.bashrc",
         r"C:\Users\admin\.gitconfig",
         r"C:\Users\admin\.gitconfig-personal",
@@ -65,11 +66,13 @@ if __name__ == "__main__":
         r"C:\Users\admin\.ssh",
         r"C:\Users\admin\.ssh\config",
         r"C:\Users\admin\.ssh\allowed_signers",
+        r"C:\Users\Admin\OneDrive\Documentos\PowerShell\Microsoft.PowerShell_profile.ps1",
+        r"C:\Users\Admin\AppData\Roaming\jj\config.toml",
     ]
 
     # ...existing code...
     # Diretório de destino do backup
     BACKUP_DIRECTORY = r"C:\Users\Admin\OneDrive\Documentos\spec_files_bkp"
-    
+
     # Chamada da função para executar o backup
     backup_files(PATHS_TO_BACKUP, BACKUP_DIRECTORY)
