@@ -57,7 +57,6 @@ def backup_files(paths, backup_dir):
 if __name__ == "__main__":
     # Caminhos a serem salvos
     PATHS_TO_BACKUP = [
-        r"C:\Program Files (x86)\gnupg",
         r"C:\Users\admin\.bashrc",
         r"C:\Users\admin\.gitconfig",
         r"C:\Users\admin\.gitconfig-personal",
