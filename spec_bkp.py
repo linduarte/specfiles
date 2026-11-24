@@ -67,6 +67,7 @@ if __name__ == "__main__":
         r"C:\Users\admin\.ssh\allowed_signers",
         r"C:\Users\Admin\OneDrive\Documentos\PowerShell\Microsoft.PowerShell_profile.ps1",
         r"C:\Users\Admin\AppData\Roaming\jj\config.toml",
+        r"C:\Users\Admin\.local\share\chezmoi",
     ]
 
     # ...existing code...
